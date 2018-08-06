@@ -1,0 +1,27 @@
+{
+  "name": "sth348962/algorithms",
+  "description": "It's just a list of different algorithms.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sth348962",
+      "email": "sth348962@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Sth348962\\Algorithms\\": "src/"
+    }
+  },
+  "require": {
+    "nicmart/tree": "^0.2.7"
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.4"
+  },
+  "scripts": {
+    "test-unit-run": "codecept run unit",
+    "test-unit-generate": "codecept generate:test unit"
+  }
+}
