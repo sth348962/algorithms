@@ -1,25 +1,31 @@
 <?php
 
-namespace Sth348962\Algorithms\Utils;
+namespace Sth348962\Algorithms\Matrix;
 
 use OutOfBoundsException;
 
+use Sth348962\Algorithms\Utils\IMatrix;
+
 class Submatrix implements IMatrix
 {
+    /**
+     * @var \Sth348962\Algorithms\Utils\IMatrix
+     */
     protected $origin;
+
     protected $rowIndex;
     protected $rows;
     protected $colIndex;
     protected $columns;
 
     /**
-     * @param \Sth348962\Algorithms\Utils\Matrix $origin
+     * @param \Sth348962\Algorithms\Utils\IMatrix $origin
      * @param int $rowIndex Первая строка
      * @param int $rows Число строк
      * @param int $colIndex Первый столбец
      * @param int $columns Число столбцов
      */
-    public function __construct(Matrix $origin, int $rowIndex, int $rows, int $colIndex, int $columns)
+    public function __construct(IMatrix $origin, int $rowIndex, int $rows, int $colIndex, int $columns)
     {
         $this->origin = $origin;
         $this->rowIndex = $rowIndex;

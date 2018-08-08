@@ -59,3 +59,5 @@ composer test-unit-generate
    [Вариант "Разделяй и властвуй"](https://ru.wikipedia.org/wiki/Алгоритмы:_построение_и_анализ)
    
 9. [Матрицы и операции с ними](https://ru.wikipedia.org/wiki/Матрица_(математика))
+
+   [Алгоритм Штрассена](https://en.wikipedia.org/wiki/Strassen_algorithm)

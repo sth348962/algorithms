@@ -1,10 +1,8 @@
 <?php
 
-use OutOfBoundsException;
-use Exception;
-
-use Sth348962\Algorithms\Utils\TransposeMatrix;
-use Sth348962\Algorithms\Utils\Submatrix;
+use Sth348962\Algorithms\Matrix\StrassenAlgorithm;
+use Sth348962\Algorithms\Matrix\TransposeMatrix;
+use Sth348962\Algorithms\Matrix\Submatrix;
 use Sth348962\Algorithms\Utils\IMatrix;
 use Sth348962\Algorithms\Utils\Matrix;
 use Sth348962\Algorithms\Matrix\Calc;
@@ -78,11 +76,36 @@ class MatrixTest extends \Codeception\Test\Unit
         ]);
 
         $calc = new Calc();
-        $this->assertEquals(Matrix::createWithArray([
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([
             [0, -4],
             [1, 2],
             [1, 1],
         ]), $calc->add($m1, $m2));
+    }
+
+    /**
+     * Вычитание матриц
+     */
+    public function testCalcSub()
+    {
+        $m1 = Matrix::createWithArray([
+            [4, -2],
+            [0, -1],
+            [0, 0],
+        ]);
+
+        $m2 = Matrix::createWithArray([
+            [-4, -2],
+            [1, 3],
+            [1, 1],
+        ]);
+
+        $calc = new Calc();
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([
+            [8, 0],
+            [-1, -4],
+            [-1, -1],
+        ]), $calc->sub($m1, $m2));
     }
 
     public function testTranspose()
@@ -93,9 +116,9 @@ class MatrixTest extends \Codeception\Test\Unit
         $m1 = Matrix::createWithArray([[1]]);
         $m2 = Matrix::createWithArray([[1, 2], [3, 4], [5, 6]]);
 
-        $this->assertEquals(Matrix::createWithArray([]), $calc->transpose($m0));
-        $this->assertEquals(Matrix::createWithArray([[1]]), $calc->transpose($m1));
-        $this->assertEquals(Matrix::createWithArray([[1, 3, 5], [2, 4, 6]]), $calc->transpose($m2));
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([]), $calc->transpose($m0));
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([[1]]), $calc->transpose($m1));
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([[1, 3, 5], [2, 4, 6]]), $calc->transpose($m2));
 
         // Спецкласс для транспонирования матрицы за счет перехвата вызова её методов
         $expected = $calc->transpose($m2);
@@ -124,10 +147,14 @@ class MatrixTest extends \Codeception\Test\Unit
             [0, -1, 4, 0],
         ]);
 
-        $this->assertEquals(Matrix::createWithArray([
+        $this->tester->assertEqualsMatrix(Matrix::createWithArray([
             [-3, -2, 2, 0],
             [6, 2, 4, 0],
             [0, -3, 12, 0],
         ]), $calc->multiply($m1, $m2));
+
+        // Проверяем работу реализации алгоритма Штрасссена
+        $strassen = new StrassenAlgorithm($calc);
+        $this->tester->assertEqualsMatrix($calc->multiply($m1, $m2), $strassen->multiply($m1, $m2));
     }
 }
