@@ -55,7 +55,7 @@ class Matrix implements IMatrix
      */
     public function get(int $row, int $col)
     {
-        if (!isset($this->origin[$row][$col])) {
+        if ($row >= $this->rows || $col >= $this->columns) {
             throw new OutOfBoundsException('There is no such element');
         }
 

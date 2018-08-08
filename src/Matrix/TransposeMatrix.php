@@ -1,6 +1,8 @@
 <?php
 
-namespace Sth348962\Algorithms\Utils;
+namespace Sth348962\Algorithms\Matrix;
+
+use Sth348962\Algorithms\Utils\IMatrix;
 
 /**
  * Транспонированная матрица.
@@ -9,6 +11,9 @@ namespace Sth348962\Algorithms\Utils;
  */
 class TransposeMatrix implements IMatrix
 {
+    /**
+     * @var \Sth348962\Algorithms\Utils\IMatrix
+     */
     protected $original;
 
     public function __construct(IMatrix $original)

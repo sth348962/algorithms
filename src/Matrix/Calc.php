@@ -38,6 +38,34 @@ class Calc
     }
 
     /**
+     * Вычисляет разность двух матриц, возвращая новую матрицу
+     *
+     * @param \Sth348962\Algorithms\Utils\IMatrix $m1
+     * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     * @return \Sth348962\Algorithms\Utils\IMatrix
+     */
+    public function sub(IMatrix $m1, IMatrix $m2): IMatrix
+    {
+        if ($m1->rows() !== $m2->rows()) {
+            throw new InvalidArgumentException('Two matrices must have an equal number of rows and columns to be sub');
+        }
+
+        if ($m1->columns() !== $m2->columns()) {
+            throw new InvalidArgumentException('Two matrices must have an equal number of rows and columns to be sub');
+        }
+
+        $rows = $m1->rows();
+        $columns = $m1->columns();
+        $m = Matrix::createWithDimensions($rows, $columns);
+        for ($i = $rows; $i--;) {
+            for ($j = $columns; $j--;) {
+                $m->set($i, $j, $m1->get($i, $j) - $m2->get($i, $j));
+            }
+        }
+        return $m;
+    }
+
+    /**
      * Транспонирование матрицы $original
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $original

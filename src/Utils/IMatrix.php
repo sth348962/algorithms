@@ -23,6 +23,7 @@ interface IMatrix
      * @param int $col Столбец; нумерация с нулевого индекса
      * @return mixed Элемент на пересечении строки $row и столбца $col
      * @throws \OutOfBoundsException
+     * @throws \InvalidArgumentException
      */
     public function get(int $row, int $col);
 
@@ -32,6 +33,7 @@ interface IMatrix
      * @param mixed $value Значение ячейки
      * @return \Sth348962\Algorithms\Utils\IMatrix
      * @throws \OutOfBoundsException
+     * @throws \InvalidArgumentException
      */
     public function set(int $row, int $col, $value): IMatrix;
 }
