@@ -26,6 +26,8 @@ composer test-unit-generate
 
 # Содержание
 
+## Алгоритмы и структуры данных
+
 1. [Алгоритм Кнута — Морриса — Пратта](https://ru.wikipedia.org/wiki/Алгоритм_Кнута_—_Морриса_—_Пратта)
   
    [Описание самого алгоритма](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
@@ -61,3 +63,8 @@ composer test-unit-generate
 9. [Матрицы и операции с ними](https://ru.wikipedia.org/wiki/Матрица_(математика))
 
    [Алгоритм Штрассена](https://en.wikipedia.org/wiki/Strassen_algorithm)
+   
+## Разное
+
+1. [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
+   [Стресс-тест для UTF-8](https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt)

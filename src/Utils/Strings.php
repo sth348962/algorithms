@@ -8,10 +8,11 @@ use Traversable;
 class Strings
 {
     /**
-     * Возвращает генератор для прохождения строки в кодировке UTF8 символ за символом.
+     * Возвращает генератор для прохождения строки в кодировке UTF-8 символ за символом.
      *
      * @param string $string
      * @return \Traversable
+     * @throws \InvalidArgumentException Если строка не в UTF-8
      */
     public function generatorUtf8(string $string): Traversable
     {
@@ -20,6 +21,8 @@ class Strings
             for ($i = 0; $i < $len; $i++) {
                 $v = ord($string[$i]);
 
+                // Таблица из [Википедии](https://en.wikipedia.org/wiki/UTF-8)
+                //
                 // | Number of bytes | Bits for code point | First code point | Last code point | Byte 1   | Byte 2   | Byte 3   | Byte 4   | Byte 5   | Byte 6   |
                 // |-----------------|---------------------|------------------|-----------------|----------|----------|----------|----------|----------|----------|
                 // | 1               | 7                   | U+0000           | U+007F          | 0xxxxxxx |          |          |          |          |          |
@@ -38,19 +41,34 @@ class Strings
                 }
 
                 if ($v < 0b11100000) {
-                    $bytes = 2;
+                    $additional = 1;
                 } else if ($v < 0b11110000) {
-                    $bytes = 3;
+                    $additional = 2;
                 } else if ($v < 0b11111000) {
-                    $bytes = 4;
+                    $additional = 3;
                 } else if ($v < 0b11111100) {
-                    $bytes = 5;
+                    $additional = 4;
                 } else {
-                    $bytes = 6;
+                    $additional = 5;
                 }
 
-                yield substr($string, $i, 2);
-                $i = $i + $bytes - 1;
+                $result = $string[$i];
+                while ($additional--) {
+                    $i++;
+                    if ($i === $len) {
+                        // Если в строке не хватает байтов
+                        throw new InvalidArgumentException('string in a wrong format');
+                    }
+
+                    // Значение байта должно находиться в пределах 10xxxxxx
+                    $v = ord($string[$i]);
+                    if ($v < 0b10000000 || $v > 0b10111111) {
+                        throw new InvalidArgumentException('string in a wrong format');
+                    }
+
+                    $result = $result . $string[$i];
+                }
+                yield $result;
             }
         })();
     }
