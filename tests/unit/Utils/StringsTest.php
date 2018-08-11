@@ -11,16 +11,16 @@ class StringsTest extends \Codeception\Test\Unit
     /**
      * @param string $ascii
      * @param string[] $expected
-     * @dataProvider dataForTestUtf8
+     * @dataProvider dataForTestUtf8GeneratorSuccess
      */
-    public function testUtf8Generator(string $ascii, array $expected)
+    public function testUtf8GeneratorSuccess(string $ascii, array $expected)
     {
         $actual = Strings::generatorUtf8($ascii);
         $this->assertInstanceOf(Traversable::class, $actual);
         $this->assertEquals($expected, iterator_to_array($actual));
     }
 
-    public function dataForTestUtf8()
+    public function dataForTestUtf8GeneratorSuccess()
     {
         return [
             // Пустая строка
@@ -29,7 +29,59 @@ class StringsTest extends \Codeception\Test\Unit
             ['Hi!', ['H', 'i', '!']],
             // UNICODE
             ['Привет, мир!', ['П', 'р', 'и', 'в', 'е', 'т', ',', ' ', 'м', 'и', 'р', '!']],
-            ['Kąt ï»¿', ['K', 'ą', 't', ' ', 'ï', '»', '¿']],
+            // Разное количество байт
+            [
+                // 6 байтов
+                chr(0b11111100) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) .
+                // 5 байтов
+                chr(0b11111000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) .
+                // 4 байтов
+                '🎶'.
+                // 3 байтов
+                '☢'.
+                //2 байта
+                'Ф'.
+                //1 байт
+                '?',
+                // Результат
+                [
+                    chr(0b11111100) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000),
+                    chr(0b11111000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000),
+                    '🎶',
+                    '☢',
+                    'Ф',
+                    '?',
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * @param string $ascii
+     * @dataProvider dataForTestUtf8GeneratorFail
+     * @expectedException \InvalidArgumentException
+     */
+    public function testUtf8GeneratorFail(string $ascii)
+    {
+        $iterator = Strings::generatorUtf8($ascii);
+        iterator_to_array($iterator);
+    }
+
+    public function dataForTestUtf8GeneratorFail()
+    {
+        return [
+            // Неверный первый байт
+            [
+                chr(0b10000000)
+            ],
+            // Не хватает байтов
+            [
+                chr(0b11111100) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000)
+            ],
+            // Неверный второй байт (должен быть 0b10xxxxxx)
+            [
+                chr(0b11111100) . chr(0b11000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000) . chr(0b10000000),
+            ],
         ];
     }
 }
