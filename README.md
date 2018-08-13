@@ -66,6 +66,10 @@ composer test-unit-generate
 
 10. [Наибольший общий делитель](https://en.wikipedia.org/wiki/Greatest_common_divisor)
 
+11. [Алгоритмы быстрого возведения в степень](https://ru.wikipedia.org/wiki/Алгоритмы_быстрого_возведения_в_степень)
+
+    [Реализация на C](https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int)
+
 ## Разное
 
 1. [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
