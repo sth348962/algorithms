@@ -28,6 +28,8 @@ class MatrixTest extends \Codeception\Test\Unit
         // Нельзя выходить за пределы подматрицы
         try {
             $sm->get(0, 2);
+            // Unreachable code
+            $this->assertEquals(true, false);
         } catch (Exception $e) {
             $this->assertInstanceOf(OutOfBoundsException::class, $e);
         }
