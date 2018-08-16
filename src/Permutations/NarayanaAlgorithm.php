@@ -34,19 +34,20 @@ class NarayanaAlgorithm
         // $i не доходит до индекса последнего элемента массива,
         // чтобы сравнивать с элементов под индексом $i + 1 не опасаясь выйти за пределы массива
         $length = count($original);
-        for ($i = 0; $i < $length - 1; $i++) {
+        $i = $length - 1;
+        while ($i-- > 0) {
             $tmp = call_user_func($this->sortFn, $original[$i], $original[$i + 1]);
             if ($tmp === 0) {
                 // Если наткнулись на одинаковые элементы
                 throw new InvalidArgumentException('have came across equal elements');
             }
 
-            if ($tmp < 0) {
-                $k = $i;
-                $l = $i + 1;
-            } else {
+            if ($tmp > 0) {
                 continue;
             }
+
+            $k = $i;
+            $l = $i + 1;
 
             // Т.к. мы ищем максимальный индекс $j, то можно начинать с конца
             $j = $length;
@@ -61,6 +62,8 @@ class NarayanaAlgorithm
                     $l = $j;
                 }
             }
+
+            break;
         }
 
         if ($k === -1) {
