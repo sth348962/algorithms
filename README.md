@@ -70,6 +70,12 @@ composer test-unit-generate
 
     [Реализация на C](https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int)
 
+12. [Перестановка](https://ru.wikipedia.org/wiki/Перестановка)
+
+    [Описание различных алгоритмов](https://en.wikipedia.org/wiki/Permutation)
+
+    [Алгоритм Нарайаны](https://ru.wikipedia.org/wiki/Алгоритм_Нарайаны)
+
 ## Разное
 
 1. [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
