@@ -1,6 +1,5 @@
 <?php
 
-use dataForT;
 use Sth348962\Algorithms\Sorters\MergeSorter;
 use Sth348962\Algorithms\Utils\Point2D;
 
