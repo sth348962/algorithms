@@ -31,15 +31,14 @@ class NarayanaAlgorithm
         // Максимальный индекс, элемент которого больше элемента с индексом $k
         $l = -1;
 
-        // $i не доходит до индекса последнего элемента массива,
-        // чтобы сравнивать с элементов под индексом $i + 1 не опасаясь выйти за пределы массива
+        // Т.к. мы ищем максимальные индексы $k и $l, начинаем поиски с конца массива
         $length = count($original);
         $i = $length - 1;
         while ($i-- > 0) {
             $tmp = call_user_func($this->sortFn, $original[$i], $original[$i + 1]);
             if ($tmp === 0) {
                 // Если наткнулись на одинаковые элементы
-                throw new InvalidArgumentException('have came across equal elements');
+                throw new InvalidArgumentException('have come across equal elements');
             }
 
             if ($tmp > 0) {
@@ -55,7 +54,7 @@ class NarayanaAlgorithm
                 $tmp = call_user_func($this->sortFn, $original[$k], $original[$j]);
                 if ($tmp === 0) {
                     // Если наткнулись на одинаковые элементы
-                    throw new InvalidArgumentException('have came across equal elements');
+                    throw new InvalidArgumentException('have come across equal elements');
                 }
 
                 if ($tmp < 0) {
