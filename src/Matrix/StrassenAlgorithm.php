@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Matrix;
 
 use Sth348962\Algorithms\Utils\IMatrix;
@@ -20,10 +22,11 @@ class StrassenAlgorithm
     }
 
     /**
-     * Вычисляет произведение двух матриц, возвращая новую матрицу
+     * Вычисляет произведение двух матриц, возвращая новую матрицу.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $m1
      * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     public function multiply(IMatrix $m1, IMatrix $m2): IMatrix
@@ -36,10 +39,13 @@ class StrassenAlgorithm
         $rows = $m1->rows();
         $columns = $m2->columns();
 
-        // Дополняем обе матрицы до квадратной размера N^2^M (т.е. размерность которых кратны степени 2)
-        // @todo Необязательно. Например, матрицы размера 1600x1600 можно свести к матрицам размера 25x25, которые быстрее будет умножить обычным методом.
-        // @todo Проверить, может быть матрицы уже квадратные и нужной размерности.
-        $d = 2 ** ceil(log(max($toMultiply, $rows, $columns), 2));
+        /**
+         * Дополняем обе матрицы до квадратной размера N^2^M (т.е. размерность которых кратны степени 2).
+         *
+         * @todo Необязательно. Например, матрицы размера 1600x1600 можно свести к матрицам размера 25x25, которые быстрее будет умножить обычным методом.
+         * @todo Проверить, может быть матрицы уже квадратные и нужной размерности.
+         */
+        $d = (int) (2 ** ceil(log(max($toMultiply, $rows, $columns), 2)));
         $product = $this->step(
             new ZeroExtendedMatrix($m1, $d, $d),
             new ZeroExtendedMatrix($m2, $d, $d)
@@ -50,10 +56,11 @@ class StrassenAlgorithm
     }
 
     /**
-     * Вычисляет произведение двух матриц (квадратных, размерность которых кратна степени 2), возвращая новую матрицу
+     * Вычисляет произведение двух матриц (квадратных, размерность которых кратна степени 2), возвращая новую матрицу.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $m1
      * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     protected function step(IMatrix $m1, IMatrix $m2)
@@ -141,6 +148,7 @@ class StrassenAlgorithm
                     $c->set($d + $i, $d + $j, $c22->get($i, $j));
                 }
             }
+
             return $c;
         }
 

@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\KnuthMorrisPratt;
 
 class PrefixFunction
 {
     /**
      * @param string $s Строка символов в кодировке ASCII, для которых вычисляется значение префикс-функции
+     *
      * @return int[]
      */
     public function get(string $s): array

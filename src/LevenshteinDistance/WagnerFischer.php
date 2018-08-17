@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\LevenshteinDistance;
 
 class WagnerFischer
 {
     /**
      * @param string $from Из какой строки
-     * @param string $to В какую строку
+     * @param string $to   В какую строку
+     *
      * @return int[][] Матрица дистанций
      */
     public function matrix(string $from, string $to): array
@@ -15,22 +18,22 @@ class WagnerFischer
         $n = strlen($to);
 
         // Крайний случай - если одна из строк (или обе) равна нулю
-        if ($n + $m === 0) {
+        if (0 === $n + $m) {
             return [];
         }
 
-        if ($n === 0) {
+        if (0 === $n) {
             return array_map(function (int $value) {
                 return [$value];
             }, range(0, $m, 1));
         }
 
-        if ($m === 0) {
+        if (0 === $m) {
             return [range(0, $n, 1)];
         }
 
         /**
-         * @var int[][] $matrix Матрица расстояний
+         * @var int[][] Матрица расстояний
          *
          * Считаем, что $i индекс соответствует $i - 1 символу в строке $from,
          * а $j индекс соответствует $j - 1 символу в строке $to,
@@ -53,9 +56,10 @@ class WagnerFischer
 
         for ($i = 0; $i <= $m; $i++) {
             for ($j = 0; $j <= $n; $j++) {
-                if ($i === 0 || $j === 0) {
+                if (0 === $i || 0 === $j) {
                     // Расчет сравнения с пустой строкой
                     $matrix[$i][$j] = $i + $j;
+
                     continue;
                 }
 

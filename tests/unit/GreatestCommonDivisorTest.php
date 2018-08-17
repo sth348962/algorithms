@@ -1,14 +1,20 @@
 <?php
 
-use Sth348962\Algorithms\GreatestCommonDivisor\EuclideanAlgorithm;
-use Sth348962\Algorithms\GreatestCommonDivisor\BinaryAlgorithm;
+declare(strict_types=1);
 
-class GreatestCommonDivisorTest extends \Codeception\Test\Unit
+use Sth348962\Algorithms\GreatestCommonDivisor\BinaryAlgorithm;
+use Sth348962\Algorithms\GreatestCommonDivisor\EuclideanAlgorithm;
+
+/**
+ * @internal
+ * @coversNothing
+ */
+final class GreatestCommonDivisorTest extends \Codeception\Test\Unit
 {
     /**
      * Вычисление НОД по алгоритму Евклида.
      */
-    public function testEuclideanAlgorithm()
+    public function testEuclideanAlgorithm(): void
     {
         $gcd = new EuclideanAlgorithm();
         $this->assertEquals(6, $gcd->calc(24, 54));
@@ -18,7 +24,7 @@ class GreatestCommonDivisorTest extends \Codeception\Test\Unit
     /**
      * Использование бинарного алгоритма вычисления НОД.
      */
-    public function testBinaryAlgorithm()
+    public function testBinaryAlgorithm(): void
     {
         $gcd = new BinaryAlgorithm();
         $this->assertEquals(0, $gcd->calc(0, 0));

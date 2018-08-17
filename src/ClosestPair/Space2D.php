@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\ClosestPair;
 
 use RuntimeException;
@@ -62,12 +64,14 @@ class Space2D
      * Поиск ближайших пар в несортированном массивее.
      *
      * @param mixed[] $points Массив точек
+     *
      * @return mixed[][] Точки с минимальным расстоянием
      */
     public function find(array $points): array
     {
         $sortedPoints = call_user_func($this->sortByX, $points);
         $stepResult = $this->findInSortedArray($sortedPoints);
+
         return $stepResult->getClosestPoints();
     }
 
@@ -75,8 +79,10 @@ class Space2D
      * Поиск ближайших пар в сортированном массивее.
      *
      * @param mixed[] $points Отсортированный по X массив точек
-     * @return \Sth348962\Algorithms\ClosestPair\StepResult Промежуточное значение
+     *
      * @throws \RuntimeException
+     *
+     * @return \Sth348962\Algorithms\ClosestPair\StepResult Промежуточное значение
      */
     protected function findInSortedArray(array $points): StepResult
     {
@@ -85,7 +91,7 @@ class Space2D
             return $this->findBruteForce($points);
         }
 
-        $mid = ceil($length / 2);
+        $mid = (int) (ceil($length / 2));
         [$left, $right] = array_chunk($points, $mid);
 
         // Вычисляем значения отдельно для каждой половины
@@ -125,10 +131,10 @@ class Space2D
                 // Точки находятся в левой или в правой половине
                 $pointAPosition = call_user_func($this->compareByX, $pointA, $midPoint);
                 $pointBPosition = call_user_func($this->compareByX, $pointB, $midPoint);
-                if ($pointAPosition === $pointBPosition || $pointAPosition === 0 || $pointBPosition === 0) {
+                if ($pointAPosition === $pointBPosition || 0 === $pointAPosition || 0 === $pointBPosition) {
                     // Точки с координатой x, равной точке $midPoint, могут находиться как в правой,
                     // так и в левой половине
-                    if ($pointAPosition === 0) {
+                    if (0 === $pointAPosition) {
                         if ($pointA === $midPoint) {
                             // Центральная точка принадлежит левой половине
                             $pointAPosition = -1;
@@ -137,7 +143,7 @@ class Space2D
                         }
                     }
 
-                    if ($pointBPosition === 0) {
+                    if (0 === $pointBPosition) {
                         if ($pointB === $midPoint) {
                             // Центральная точка принадлежит левой половине
                             $pointBPosition = -1;
@@ -179,8 +185,10 @@ class Space2D
      * Поиск ближайших пар в несортированном массивее методом brute force.
      *
      * @param mixed[] $points Массив точек
-     * @return \Sth348962\Algorithms\ClosestPair\StepResult Промежуточное значение
+     *
      * @throws \RuntimeException
+     *
+     * @return \Sth348962\Algorithms\ClosestPair\StepResult Промежуточное значение
      */
     protected function findBruteForce(array $points): StepResult
     {

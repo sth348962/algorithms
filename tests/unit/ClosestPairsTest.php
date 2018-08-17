@@ -1,16 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+use Sth348962\Algorithms\ClosestPair\Space2D;
 use Sth348962\Algorithms\Sorters\MergeSorter;
 use Sth348962\Algorithms\Utils\Point2D;
 
-class ClosestPairsTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ClosestPairsTest extends \Codeception\Test\Unit
 {
     /**
      * @param mixed[][] $expected Пары точек с минимальным расстоянием
-     * @param int[][] $points Координаты (x, y) точек
+     * @param int[][]   $points   Координаты (x, y) точек
      * @dataProvider dataForTestFindClosestPairsInSpace2D
      */
-    public function testFindClosestPairsInSpace2D(array $expected, array $points)
+    public function testFindClosestPairsInSpace2D(array $expected, array $points): void
     {
         $xMergeSorter = new MergeSorter('__ClosestPairsTest__eq__X');
         $yMergeSorter = new MergeSorter('__ClosestPairsTest__eq__Y');
@@ -29,7 +36,7 @@ class ClosestPairsTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $closestPairs->find($points));
     }
 
-    public function dataForTestFindClosestPairsInSpace2D()
+    public function dataForTestFindClosestPairsInSpace2D(): array
     {
         return [
             [

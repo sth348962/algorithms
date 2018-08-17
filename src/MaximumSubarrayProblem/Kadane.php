@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\MaximumSubarrayProblem;
 
 use RuntimeException;
@@ -12,8 +14,9 @@ class Kadane
      * используя алгоритм, предложенный Джеем Каданом.
      *
      * @param int[] $original
-     * @param int $from
-     * @param int $to
+     * @param int   $from
+     * @param int   $to
+     *
      * @return \Sth348962\Algorithms\MaximumSubarrayProblem\Result
      */
     public function find(array $original, int $from, int $to): Result
@@ -72,7 +75,7 @@ class Kadane
             // Тоже самое касается последнего элемента - если он отрицательный,
             // то проверять просто нечего.
             for ($i = $from + 1; $i < $to; $i++) {
-                if ($original[$i - 1] !== 0 && $original[$i] > 0) {
+                if (0 !== $original[$i - 1] && $original[$i] > 0) {
                     // Мы ищем неположительные (!) элементы в последовательности,
                     // а так же элементы, которым предшествовал ноль
                     continue;

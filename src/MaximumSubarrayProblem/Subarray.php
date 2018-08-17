@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\MaximumSubarrayProblem;
 
 class Subarray
@@ -20,6 +22,11 @@ class Subarray
         $this->length = $length;
     }
 
+    public function __toString(): string
+    {
+        return $this->start.':'.$this->length;
+    }
+
     public function getStart(): int
     {
         return $this->start;
@@ -28,10 +35,5 @@ class Subarray
     public function getLength(): int
     {
         return $this->length;
-    }
-
-    public function __toString(): string
-    {
-        return $this->start . ':' . $this->length;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Utils;
 
 use OutOfBoundsException;
@@ -10,10 +12,23 @@ class Matrix implements IMatrix
     protected $columns;
     protected $origin;
 
+    /**
+     * @param mixed[][] $origin
+     * @param int       $rows    Число строк
+     * @param int       $columns Число столбцов
+     */
+    protected function __construct(array $origin, int $rows, int $columns)
+    {
+        $this->rows = $rows;
+        $this->columns = $columns;
+        $this->origin = $origin;
+    }
+
     public static function createWithArray(array $origin): IMatrix
     {
         $rows = count($origin);
-        $columns = ($rows === 0) ? 0 : count($origin[0]);
+        $columns = (0 === $rows) ? 0 : count($origin[0]);
+
         return new static($origin, $rows, $columns);
     }
 
@@ -23,19 +38,7 @@ class Matrix implements IMatrix
     }
 
     /**
-     * @param mixed[][] $origin
-     * @param int $rows Число строк
-     * @param int $columns Число столбцов
-     */
-    protected function __construct(array $origin, int $rows, int $columns)
-    {
-        $this->rows = $rows;
-        $this->columns = $columns;
-        $this->origin = $origin;
-    }
-
-    /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rows(): int
     {
@@ -43,7 +46,7 @@ class Matrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function columns(): int
     {
@@ -51,7 +54,7 @@ class Matrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(int $row, int $col)
     {
@@ -63,7 +66,7 @@ class Matrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set(int $row, int $col, $value): IMatrix
     {
@@ -72,6 +75,7 @@ class Matrix implements IMatrix
         }
 
         $this->origin[$row][$col] = $value;
+
         return $this;
     }
 }

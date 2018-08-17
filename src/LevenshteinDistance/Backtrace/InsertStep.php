@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\LevenshteinDistance\Backtrace;
 
 class InsertStep extends Step

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Utils;
 
 use InvalidArgumentException;
@@ -11,8 +13,10 @@ class Strings
      * Возвращает генератор для прохождения строки в кодировке UTF-8 символ за символом.
      *
      * @param string $string
-     * @return \Traversable
+     *
      * @throws \InvalidArgumentException Если строка не в UTF-8
+     *
+     * @return \Traversable
      */
     public function generatorUtf8(string $string): Traversable
     {
@@ -33,6 +37,7 @@ class Strings
                 // | 6               | 31                  | U+4000000        | U+7FFFFFFF      | 1111110x | 10xxxxxx | 10xxxxxx | 10xxxxxx | 10xxxxxx | 10xxxxxx |
                 if ($v < 0b10000000) {
                     yield $string[$i];
+
                     continue;
                 }
 
@@ -42,11 +47,11 @@ class Strings
 
                 if ($v < 0b11100000) {
                     $additional = 1;
-                } else if ($v < 0b11110000) {
+                } elseif ($v < 0b11110000) {
                     $additional = 2;
-                } else if ($v < 0b11111000) {
+                } elseif ($v < 0b11111000) {
                     $additional = 3;
-                } else if ($v < 0b11111100) {
+                } elseif ($v < 0b11111100) {
                     $additional = 4;
                 } else {
                     $additional = 5;
@@ -66,7 +71,7 @@ class Strings
                         throw new InvalidArgumentException('string in a wrong format');
                     }
 
-                    $result = $result . $string[$i];
+                    $result = $result.$string[$i];
                 }
                 yield $result;
             }

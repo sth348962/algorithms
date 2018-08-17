@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Utils;
 
 class Point2D
@@ -32,19 +34,20 @@ class Point2D
 
     /**
      * @param \Sth348962\Algorithms\Utils\Point2D $other
+     *
      * @return float
      */
-    public function distance(Point2D $other): float
+    public function distance(self $other): float
     {
         return sqrt(($this->x - $other->x) ** 2 + ($this->y - $other->y) ** 2);
     }
 
-    public function compareX(Point2D $other): int
+    public function compareX(self $other): int
     {
         return $this->x <=> $other->x;
     }
 
-    public function compareY(Point2D $other): int
+    public function compareY(self $other): int
     {
         return $this->y <=> $other->y;
     }

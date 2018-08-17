@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Exponentiation;
 
 use InvalidArgumentException;
@@ -12,8 +14,10 @@ class ExponentiationBySquaring
     /**
      * @param int $x Число, которое требуется возвести в степень $n
      * @param int $n Степень
-     * @return int
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return int
      */
     public function calc(int $x, int $n): int
     {
@@ -22,8 +26,8 @@ class ExponentiationBySquaring
         }
 
         $result = 1;
-        while ($n != 0) {
-            if ($n % 2 === 1) {
+        while (0 !== $n) {
+            if (1 === $n % 2) {
                 $result = $result * $x;
             }
             $n = $n >> 1;
@@ -32,6 +36,7 @@ class ExponentiationBySquaring
             // т.к. возведение в целую неотрицательную степень всегда будет оканчиваться на нечетном $n == 1.
             $x = $x * $x;
         }
+
         return $result;
     }
 }

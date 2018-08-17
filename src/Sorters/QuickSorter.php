@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Sorters;
 
 use RuntimeException;
@@ -7,9 +9,10 @@ use RuntimeException;
 class QuickSorter extends Sorter
 {
     /**
-     * Самая простая реализация
+     * Самая простая реализация.
      *
      * @param mixed[] $original
+     *
      * @return mixed[] Новый массив с отсортированными элементами
      */
     public function sort(array $original): array
@@ -29,12 +32,15 @@ class QuickSorter extends Sorter
             switch (call_user_func($this->sortFn, $item, $pivot)) {
                 case -1:
                     $left[] = $item;
+
                     break;
                 case 0:
                     $middle[] = $item;
+
                     break;
                 case 1:
                     $right[] = $item;
+
                     break;
                 default:
                     throw new RuntimeException('Unreachable code');
@@ -49,11 +55,12 @@ class QuickSorter extends Sorter
     }
 
     /**
-     * Быстрая сортировка переданного массива с использованием разбиения Ломуто
+     * Быстрая сортировка переданного массива с использованием разбиения Ломуто.
      *
      * @param mixed[] $original Массив передается по ссылке
-     * @param int $lo
-     * @param int $hi
+     * @param int     $lo
+     * @param int     $hi
+     *
      * @return bool
      */
     public function mSortUsingLomutoPartition(array &$original, int $lo, int $hi): bool
@@ -62,16 +69,18 @@ class QuickSorter extends Sorter
             return true;
         }
         $pivot = $this->lomutoPartition($original, $lo, $hi);
+
         return $this->mSortUsingLomutoPartition($original, $lo, $pivot - 1) &&
             $this->mSortUsingLomutoPartition($original, $pivot + 1, $hi);
     }
 
     /**
-     * Быстрая сортировка переданного массива с использованием разбиения Хоара
+     * Быстрая сортировка переданного массива с использованием разбиения Хоара.
      *
      * @param mixed[] $original Массив передается по ссылке
-     * @param int $lo
-     * @param int $hi
+     * @param int     $lo
+     * @param int     $hi
+     *
      * @return bool
      */
     public function mSortUsingHoarePartition(array &$original, int $lo, int $hi): bool
@@ -80,16 +89,18 @@ class QuickSorter extends Sorter
             return true;
         }
         $pivot = $this->hoarePartition($original, $lo, $hi);
+
         return $this->mSortUsingHoarePartition($original, $lo, $pivot) &&
             $this->mSortUsingHoarePartition($original, $pivot + 1, $hi);
     }
 
     /**
-     * Разбиение Ломуто
+     * Разбиение Ломуто.
      *
      * @param mixed[] $original Массив передается по ссылке
-     * @param int $lo
-     * @param int $hi
+     * @param int     $lo
+     * @param int     $hi
+     *
      * @return int Позиция опорного элемента
      */
     public function lomutoPartition(array &$original, int $lo, int $hi): int
@@ -123,11 +134,12 @@ class QuickSorter extends Sorter
     }
 
     /**
-     * Разбиение Хоара
+     * Разбиение Хоара.
      *
      * @param mixed[] $original Массив передается по ссылке
-     * @param int $lo
-     * @param int $hi
+     * @param int     $lo
+     * @param int     $hi
+     *
      * @return int Позиция элемента, который можно считать опорным
      */
     public function hoarePartition(array &$original, int $lo, int $hi): int

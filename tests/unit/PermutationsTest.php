@@ -1,16 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 use Sth348962\Algorithms\Permutations\NarayanaAlgorithm;
 
-class PermutationsTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class PermutationsTest extends \Codeception\Test\Unit
 {
     /**
-     * @param callable $sortFn
-     * @param mixed[] $current Начальная перестановка
+     * @param callable  $sortFn
+     * @param mixed[]   $current  Начальная перестановка
      * @param mixed[][] $expected
      * @dataProvider dataForTestNarayanaAlgorithmSuccess
      */
-    public function testNarayanaAlgorithmSuccess(callable $sortFn, array $current, array $expected)
+    public function testNarayanaAlgorithmSuccess(callable $sortFn, array $current, array $expected): void
     {
         $permutations = new NarayanaAlgorithm($sortFn);
 
@@ -19,11 +25,11 @@ class PermutationsTest extends \Codeception\Test\Unit
         do {
             $current = $permutations->next($current);
             $actual[] = $current;
-        } while ($current !== null);
+        } while (null !== $current);
         $this->assertEquals($expected, $actual);
     }
 
-    public function dataForTestNarayanaAlgorithmSuccess()
+    public function dataForTestNarayanaAlgorithmSuccess(): array
     {
         return [
             // Для пустого массива
@@ -165,17 +171,17 @@ class PermutationsTest extends \Codeception\Test\Unit
 
     /**
      * @param callable $sortFn
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @dataProvider dataForTestNarayanaAlgorithmFail
      * @expectedException \InvalidArgumentException
      */
-    public function testNarayanaAlgorithmFail(callable $sortFn, array $original)
+    public function testNarayanaAlgorithmFail(callable $sortFn, array $original): void
     {
         $permutations = new NarayanaAlgorithm($sortFn);
         $permutations->next($original);
     }
 
-    public function dataForTestNarayanaAlgorithmFail()
+    public function dataForTestNarayanaAlgorithmFail(): array
     {
         return [
             // Перестановка с одинаковыми элементами

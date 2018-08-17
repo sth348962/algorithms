@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\LevenshteinDistance;
 
-use Tree\Node\Node;
-
 use Sth348962\Algorithms\LevenshteinDistance\Backtrace\Step;
+use Tree\Node\Node;
 
 class Backtrace
 {
     /**
-     * @param string $from Из какой строки
-     * @param string $to В какую строку
+     * @param string  $from   Из какой строки
+     * @param string  $to     В какую строку
      * @param int[][] $matrix Матрица расстояний
+     *
      * @return \Tree\Node\Node Корневой узел дерева всевозможных оптимальных правок
      */
     public function root(string $from, string $to, array $matrix): Node
@@ -23,12 +25,12 @@ class Backtrace
         $root = new Node(Step::root());
 
         // Крайний случай - если одна из строк (или обе) нулевой длины
-        if ($n + $m === 0) {
+        if (0 === $n + $m) {
             return $root;
         }
 
         // Если нужно получить пустую строку
-        if ($n === 0) {
+        if (0 === $n) {
             $parent = $root;
             $i = $m;
             while ($i > 0) {
@@ -36,11 +38,12 @@ class Backtrace
                 $node = new Node(Step::delete($from[$i], 0, $i + 1));
                 $parent->addChild($node);
             }
+
             return $root;
         }
 
         // Если дана пустая строка
-        if ($m === 0) {
+        if (0 === $m) {
             $parent = $root;
             $j = $n;
             while ($j > 0) {
@@ -48,6 +51,7 @@ class Backtrace
                 $node = new Node(Step::insert($to[$j], $j + 1, 0));
                 $parent->addChild($node);
             }
+
             return $root;
         }
 
@@ -69,13 +73,13 @@ class Backtrace
 
             // Находим минимальное значение
             $values = [];
-            if (!is_null($upperLeftValue)) {
+            if (null !== $upperLeftValue) {
                 $values[] = $upperLeftValue;
             }
-            if (!is_null($upperValue)) {
+            if (null !== $upperValue) {
                 $values[] = $upperValue;
             }
-            if (!is_null($leftValue)) {
+            if (null !== $leftValue) {
                 $values[] = $leftValue;
             }
             if (empty($values)) {
@@ -84,7 +88,7 @@ class Backtrace
             }
             $min = min($values);
 
-            if (!is_null($upperLeftValue) && $min === $upperLeftValue) {
+            if (null !== $upperLeftValue && $min === $upperLeftValue) {
                 // Если идем по диагонали
                 if ($upperLeftValue === $currentValue) {
                     // Если правок не было
@@ -100,7 +104,7 @@ class Backtrace
                 $stack[] = ['parent' => $node, 'i' => $i - 1, 'j' => $j - 1];
             }
 
-            if (!is_null($upperValue) && $min === $upperValue) {
+            if (null !== $upperValue && $min === $upperValue) {
                 // Если было удаление символа
                 $node = new Node(Step::delete($from[$i], $j + 1, $i + 1));
                 $parent->addChild($node);
@@ -109,7 +113,7 @@ class Backtrace
                 $stack[] = ['parent' => $node, 'i' => $i - 1, 'j' => $j];
             }
 
-            if (!is_null($leftValue) && $min === $leftValue) {
+            if (null !== $leftValue && $min === $leftValue) {
                 // Если было добавление символа
                 $node = new Node(Step::insert($to[$j], $j + 1, $i + 1));
                 $parent->addChild($node);

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\ClosestPair;
 
 /**
- * Промежуточные результаты алгоритма
+ * Промежуточные результаты алгоритма.
  */
 class StepResult
 {

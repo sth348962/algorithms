@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Permutations;
 
 use InvalidArgumentException;
@@ -20,8 +22,10 @@ class NarayanaAlgorithm
      * Возвращает по данной перестановке следующую за ней перестановку (в лексикографическом порядке).
      *
      * @param mixed[] $original
-     * @return mixed[]|null
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return null|mixed[]
      */
     public function next(array $original): ?array
     {
@@ -36,7 +40,7 @@ class NarayanaAlgorithm
         $i = $length - 1;
         while ($i-- > 0) {
             $tmp = call_user_func($this->sortFn, $original[$i], $original[$i + 1]);
-            if ($tmp === 0) {
+            if (0 === $tmp) {
                 // Если наткнулись на одинаковые элементы
                 throw new InvalidArgumentException('have come across equal elements');
             }
@@ -52,7 +56,7 @@ class NarayanaAlgorithm
             $j = $length;
             while ($j-- && $j > $l) {
                 $tmp = call_user_func($this->sortFn, $original[$k], $original[$j]);
-                if ($tmp === 0) {
+                if (0 === $tmp) {
                     // Если наткнулись на одинаковые элементы
                     throw new InvalidArgumentException('have come across equal elements');
                 }
@@ -65,7 +69,7 @@ class NarayanaAlgorithm
             break;
         }
 
-        if ($k === -1) {
+        if (-1 === $k) {
             // Если это последняя перестановка
             return null;
         }
