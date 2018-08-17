@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 use Sth348962\Algorithms\Exponentiation\ExponentiationBySquaring;
 
-class ExponentiationTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ExponentiationTest extends \Codeception\Test\Unit
 {
-    public function testExponentiationBySquaring()
+    public function testExponentiationBySquaring(): void
     {
         $exponentiation = new ExponentiationBySquaring();
 
@@ -15,7 +21,7 @@ class ExponentiationTest extends \Codeception\Test\Unit
         try {
             $exponentiation->calc(3, -1);
             // Unreachable code
-            $this->assertEquals(true, false);
+            $this->assertTrue(false);
         } catch (Exception $e) {
             $this->assertInstanceOf(InvalidArgumentException::class, $e);
         }

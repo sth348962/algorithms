@@ -1,18 +1,24 @@
 <?php
 
-use Sth348962\Algorithms\MaximumSubarrayProblem\DivideAndConquer;
-use Sth348962\Algorithms\MaximumSubarrayProblem\Subarray;
-use Sth348962\Algorithms\MaximumSubarrayProblem\Result;
-use Sth348962\Algorithms\MaximumSubarrayProblem\Kadane;
+declare(strict_types=1);
 
-class MaximumSubarrayProblemTest extends \Codeception\Test\Unit
+use Sth348962\Algorithms\MaximumSubarrayProblem\DivideAndConquer;
+use Sth348962\Algorithms\MaximumSubarrayProblem\Kadane;
+use Sth348962\Algorithms\MaximumSubarrayProblem\Result;
+use Sth348962\Algorithms\MaximumSubarrayProblem\Subarray;
+
+/**
+ * @internal
+ * @coversNothing
+ */
+final class MaximumSubarrayProblemTest extends \Codeception\Test\Unit
 {
     /**
-     * @param int[] $original Массив целый чисел, в котором происходит поиск
+     * @param int[]                                               $original       Массив целый чисел, в котором происходит поиск
      * @param \Sth348962\Algorithms\MaximumSubarrayProblem\Result $expectedResult Результаты поиска
-     * @dataProvider data
+     * @dataProvider dataForTests
      */
-    public function testDivideAndConquer(array $original, Result $expectedResult)
+    public function testDivideAndConquer(array $original, Result $expectedResult): void
     {
         $solution = new DivideAndConquer();
         $actualResult = $solution->find($original, 0, count($original) - 1);
@@ -23,11 +29,11 @@ class MaximumSubarrayProblemTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param int[] $original Массив целый чисел, в котором происходит поиск
+     * @param int[]                                               $original       Массив целый чисел, в котором происходит поиск
      * @param \Sth348962\Algorithms\MaximumSubarrayProblem\Result $expectedResult Результаты поиска
-     * @dataProvider data
+     * @dataProvider dataForTests
      */
-    public function testKadane(array $original, Result $expectedResult)
+    public function testKadane(array $original, Result $expectedResult): void
     {
         $solution = new Kadane();
         $actualResult = $solution->find($original, 0, count($original) - 1);
@@ -37,7 +43,7 @@ class MaximumSubarrayProblemTest extends \Codeception\Test\Unit
         $this->assertEmpty(array_diff($expectedResult->subarrays, $actualResult->subarrays));
     }
 
-    public function data()
+    public function dataForTests(): array
     {
         return [
             [

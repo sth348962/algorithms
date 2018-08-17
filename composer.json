@@ -18,9 +18,11 @@
     "nicmart/tree": "^0.2.7"
   },
   "require-dev": {
-    "codeception/codeception": "^2.4"
+    "codeception/codeception": "^2.4",
+    "friendsofphp/php-cs-fixer": "^2.12"
   },
   "scripts": {
+    "fix-code-style": "php-cs-fixer fix",
     "test-unit-run": "codecept run unit",
     "test-unit-generate": "codecept generate:test unit"
   }

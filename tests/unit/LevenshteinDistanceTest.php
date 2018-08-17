@@ -1,28 +1,31 @@
 <?php
 
-use Tree\Visitor\PreOrderVisitor;
-use Tree\Builder\NodeBuilder;
-use Tree\Node\Node;
+declare(strict_types=1);
 
+use Sth348962\Algorithms\LevenshteinDistance\Backtrace;
 use Sth348962\Algorithms\LevenshteinDistance\Backtrace\Step;
 use Sth348962\Algorithms\LevenshteinDistance\WagnerFischer;
-use Sth348962\Algorithms\LevenshteinDistance\Backtrace;
+use Tree\Visitor\PreOrderVisitor;
 
-class LevenshteinDistanceTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class LevenshteinDistanceTest extends \Codeception\Test\Unit
 {
     /**
      * @param int[][] $expected Матрица дистанций
-     * @param string $from Из какой строки
-     * @param string $to В какую строку
+     * @param string  $from     Из какой строки
+     * @param string  $to       В какую строку
      * @dataProvider dataForTestDistance
      */
-    public function testDistance(array $expected, string $from, string $to)
+    public function testDistance(array $expected, string $from, string $to): void
     {
         $distance = new WagnerFischer();
         $this->assertEquals($expected, $distance->matrix($from, $to));
     }
 
-    public function dataForTestDistance()
+    public function dataForTestDistance(): array
     {
         return [
             [[], '', ''],
@@ -85,12 +88,12 @@ class LevenshteinDistanceTest extends \Codeception\Test\Unit
 
     /**
      * @param \Sth348962\Algorithms\LevenshteinDistance\Backtrace\Step[][] $expected Массив редакционных путей
-     * @param string $from Из какой строки
-     * @param string $to В какую строку
-     * @param int[][] $matrix Матрица дистанций
+     * @param string                                                       $from     Из какой строки
+     * @param string                                                       $to       В какую строку
+     * @param int[][]                                                      $matrix   Матрица дистанций
      * @dataProvider dataForTestBacktrace
      */
-    public function testBacktrace(array $expected, string $from, string $to, array $matrix)
+    public function testBacktrace(array $expected, string $from, string $to, array $matrix): void
     {
         $backtrace = new Backtrace();
         $root = $backtrace->root($from, $to, $matrix);
@@ -105,7 +108,7 @@ class LevenshteinDistanceTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $paths);
     }
 
-    public function dataForTestBacktrace()
+    public function dataForTestBacktrace(): array
     {
         return [
             // case #0

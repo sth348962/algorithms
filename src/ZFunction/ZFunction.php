@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\ZFunction;
 
 class ZFunction
 {
     /**
      * @param string $s Строка символов в кодировке ASCII, для которых вычисляется значение z-функции
+     *
      * @return int[]
      */
     public function get(string $s): array
@@ -36,6 +39,7 @@ class ZFunction
                 // для z[i], т.е. нам нужно будет продолжить расчет z-функции в точке i с точки right.
                 if ($i + $z[$j] < $right) {
                     $z[$i] = $z[$j];
+
                     continue;
                 }
 

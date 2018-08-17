@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Matrix;
 
 use InvalidArgumentException;
-
 use Sth348962\Algorithms\Utils\IMatrix;
 use Sth348962\Algorithms\Utils\Matrix;
 
 class Calc
 {
     /**
-     * Вычисляет сумму двух матриц, возвращая новую матрицу
+     * Вычисляет сумму двух матриц, возвращая новую матрицу.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $m1
      * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     public function add(IMatrix $m1, IMatrix $m2): IMatrix
@@ -34,14 +36,16 @@ class Calc
                 $m->set($i, $j, $m1->get($i, $j) + $m2->get($i, $j));
             }
         }
+
         return $m;
     }
 
     /**
-     * Вычисляет разность двух матриц, возвращая новую матрицу
+     * Вычисляет разность двух матриц, возвращая новую матрицу.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $m1
      * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     public function sub(IMatrix $m1, IMatrix $m2): IMatrix
@@ -62,13 +66,15 @@ class Calc
                 $m->set($i, $j, $m1->get($i, $j) - $m2->get($i, $j));
             }
         }
+
         return $m;
     }
 
     /**
-     * Транспонирование матрицы $original
+     * Транспонирование матрицы $original.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $original
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     public function transpose(IMatrix $original): IMatrix
@@ -81,14 +87,16 @@ class Calc
                 $result->set($j, $i, $original->get($i, $j));
             }
         }
+
         return $result;
     }
 
     /**
-     * Вычисляет произведение двух матриц, возвращая новую матрицу
+     * Вычисляет произведение двух матриц, возвращая новую матрицу.
      *
      * @param \Sth348962\Algorithms\Utils\IMatrix $m1
      * @param \Sth348962\Algorithms\Utils\IMatrix $m2
+     *
      * @return \Sth348962\Algorithms\Utils\IMatrix
      */
     public function multiply(IMatrix $m1, IMatrix $m2): IMatrix
@@ -110,6 +118,7 @@ class Calc
                 $m->set($i, $j, $product);
             }
         }
+
         return $m;
     }
 }

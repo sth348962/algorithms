@@ -1,15 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+use Sth348962\Algorithms\Matrix\Calc;
 use Sth348962\Algorithms\Matrix\StrassenAlgorithm;
-use Sth348962\Algorithms\Matrix\TransposeMatrix;
 use Sth348962\Algorithms\Matrix\Submatrix;
+use Sth348962\Algorithms\Matrix\TransposeMatrix;
 use Sth348962\Algorithms\Utils\IMatrix;
 use Sth348962\Algorithms\Utils\Matrix;
-use Sth348962\Algorithms\Matrix\Calc;
 
-class MatrixTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class MatrixTest extends \Codeception\Test\Unit
 {
-    public function testBasic()
+    public function testBasic(): void
     {
         $m = Matrix::createWithArray([
             [1, 2, -1, 3],
@@ -29,7 +35,7 @@ class MatrixTest extends \Codeception\Test\Unit
         try {
             $sm->get(0, 2);
             // Unreachable code
-            $this->assertEquals(true, false);
+            $this->assertTrue(false);
         } catch (Exception $e) {
             $this->assertInstanceOf(OutOfBoundsException::class, $e);
         }
@@ -61,9 +67,9 @@ class MatrixTest extends \Codeception\Test\Unit
     }
 
     /**
-     * Сложение матриц
+     * Сложение матриц.
      */
-    public function testCalcAdd()
+    public function testCalcAdd(): void
     {
         $m1 = Matrix::createWithArray([
             [4, -2],
@@ -86,9 +92,9 @@ class MatrixTest extends \Codeception\Test\Unit
     }
 
     /**
-     * Вычитание матриц
+     * Вычитание матриц.
      */
-    public function testCalcSub()
+    public function testCalcSub(): void
     {
         $m1 = Matrix::createWithArray([
             [4, -2],
@@ -110,7 +116,7 @@ class MatrixTest extends \Codeception\Test\Unit
         ]), $calc->sub($m1, $m2));
     }
 
-    public function testTranspose()
+    public function testTranspose(): void
     {
         $calc = new Calc();
 
@@ -134,7 +140,7 @@ class MatrixTest extends \Codeception\Test\Unit
         }
     }
 
-    public function testMultiplication()
+    public function testMultiplication(): void
     {
         $calc = new Calc();
 

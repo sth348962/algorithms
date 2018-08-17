@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Sorters;
 
 use RuntimeException;
@@ -7,9 +9,10 @@ use RuntimeException;
 class InsertionSorter extends Sorter
 {
     /**
-     * Возвращает новый отсортированный массив из элементов переданного
+     * Возвращает новый отсортированный массив из элементов переданного.
      *
      * @param mixed[] $original
+     *
      * @return mixed[]
      */
     public function sort(array $original): array
@@ -18,6 +21,7 @@ class InsertionSorter extends Sorter
         if (!$this->sortM($sorted)) {
             throw new RuntimeException('Unreachable code');
         }
+
         return $sorted;
     }
 

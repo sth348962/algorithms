@@ -1,21 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 use Sth348962\Algorithms\ZFunction\ZFunction;
 
-class ZFunctionTest extends \Codeception\Test\Unit
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ZFunctionTest extends \Codeception\Test\Unit
 {
     /**
-     * @param int[] $expected Ожидаемой значение z-функции
-     * @param string $for Строка
+     * @param int[]  $expected Ожидаемой значение z-функции
+     * @param string $for      Строка
      * @dataProvider dataForTestZFunction
      */
-    public function testZFunction($expected, $for)
+    public function testZFunction($expected, $for): void
     {
         $zFunction = new ZFunction();
         $this->assertEquals($expected, $zFunction->get($for));
     }
 
-    public function dataForTestZFunction()
+    public function dataForTestZFunction(): array
     {
         return [
             [[0], ''],

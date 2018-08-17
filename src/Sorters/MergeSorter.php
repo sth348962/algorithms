@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Sorters;
 
 class MergeSorter extends Sorter
@@ -14,7 +16,7 @@ class MergeSorter extends Sorter
         }
 
         // Середина массива
-        $mid = ceil($length / 2);
+        $mid = (int) (ceil($length / 2));
         [$left, $right] = array_chunk($original, $mid);
 
         $leftSorted = $this->sort($left);
@@ -29,7 +31,8 @@ class MergeSorter extends Sorter
      *
      * @param array $left
      * @param array $right
-     * @return  array
+     *
+     * @return array
      */
     public function merge(array $left, array $right): array
     {
@@ -37,11 +40,11 @@ class MergeSorter extends Sorter
         $rightLength = count($right);
 
         // Если один из массивов пустой
-        if ($leftLength === 0) {
+        if (0 === $leftLength) {
             return $right;
         }
 
-        if ($rightLength === 0) {
+        if (0 === $rightLength) {
             return $left;
         }
 
@@ -54,11 +57,13 @@ class MergeSorter extends Sorter
             if ($leftIndex >= $leftLength) {
                 $result[$i] = $right[$rightIndex];
                 $rightIndex++;
+
                 continue;
             }
             if ($rightIndex >= $rightLength) {
                 $result[$i] = $left[$leftIndex];
                 $leftIndex++;
+
                 continue;
             }
 
@@ -71,6 +76,7 @@ class MergeSorter extends Sorter
                 $rightIndex++;
             }
         }
+
         return $result;
     }
 }

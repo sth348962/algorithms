@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Matrix;
 
 use InvalidArgumentException;
 use OutOfBoundsException;
-
 use Sth348962\Algorithms\Utils\IMatrix;
 
 /**
@@ -26,8 +27,8 @@ class ZeroExtendedMatrix implements IMatrix
 
     /**
      * @param \Sth348962\Algorithms\Utils\IMatrix $origin
-     * @param int $rows Число строк
-     * @param int $columns Число столбцов
+     * @param int                                 $rows    Число строк
+     * @param int                                 $columns Число столбцов
      */
     public function __construct(IMatrix $origin, int $rows, int $columns)
     {
@@ -45,7 +46,7 @@ class ZeroExtendedMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rows(): int
     {
@@ -53,7 +54,7 @@ class ZeroExtendedMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function columns(): int
     {
@@ -61,7 +62,7 @@ class ZeroExtendedMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(int $row, int $col)
     {
@@ -77,7 +78,7 @@ class ZeroExtendedMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set(int $row, int $col, $value): IMatrix
     {

@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\GreatestCommonDivisor;
 
 class BinaryAlgorithm implements IGcdCalc
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function calc(int $a, int $b): int
     {
-        if ($a === 0) {
+        if (0 === $a) {
             return $b;
         }
 
-        if ($b === 0) {
+        if (0 === $b) {
             return $a;
         }
 
-        $aIsEven = ($a % 2 === 0);
-        $bIsEven = ($b % 2 === 0);
+        $aIsEven = (0 === $a % 2);
+        $bIsEven = (0 === $b % 2);
 
         if ($aIsEven && $bIsEven) {
             return 2 * $this->calc($a / 2, $b / 2);

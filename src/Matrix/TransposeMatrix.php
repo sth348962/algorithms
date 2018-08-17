@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Matrix;
 
 use Sth348962\Algorithms\Utils\IMatrix;
@@ -22,7 +24,7 @@ class TransposeMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function columns(): int
     {
@@ -30,7 +32,7 @@ class TransposeMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rows(): int
     {
@@ -38,7 +40,7 @@ class TransposeMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(int $row, int $col)
     {
@@ -46,7 +48,7 @@ class TransposeMatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set(int $row, int $col, $value): IMatrix
     {

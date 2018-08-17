@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\KnuthMorrisPratt;
 
 class KnuthMorrisPratt
 {
     /**
-     * @param string $text Текст, в котором ведется поиск
+     * @param string $text   Текст, в котором ведется поиск
      * @param string $sample Искомая строка
-     * @param int[] $p Префикс-функция от искомой строки
+     * @param int[]  $p      Префикс-функция от искомой строки
+     *
      * @return int[] Массив позиций
      */
     public function positions(string $text, string $sample, array $p): array
@@ -17,7 +20,7 @@ class KnuthMorrisPratt
 
         $positions = [];
 
-        if ($n === 0 || $m === 0) {
+        if (0 === $n || 0 === $m) {
             // Если одна из строк нулевой длины - искать нечего
             return $positions;
         }

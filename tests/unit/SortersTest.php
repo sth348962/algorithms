@@ -1,17 +1,23 @@
 <?php
 
-use Sth348962\Algorithms\Sorters\InsertionSorter;
-use Sth348962\Algorithms\Sorters\QuickSorter;
-use Sth348962\Algorithms\Sorters\MergeSorter;
+declare(strict_types=1);
 
-class SortersTest extends \Codeception\Test\Unit
+use Sth348962\Algorithms\Sorters\InsertionSorter;
+use Sth348962\Algorithms\Sorters\MergeSorter;
+use Sth348962\Algorithms\Sorters\QuickSorter;
+
+/**
+ * @internal
+ * @coversNothing
+ */
+final class SortersTest extends \Codeception\Test\Unit
 {
     /**
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @param callable $sortFn
      * @dataProvider dataForTestInsertionSorterSort
      */
-    public function testInsertionSorterSort(array $original, callable $sortFn)
+    public function testInsertionSorterSort(array $original, callable $sortFn): void
     {
         $expected = $original;
         $this->assertTrue(usort($expected, $sortFn));
@@ -20,7 +26,7 @@ class SortersTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $sorter->sort($original));
     }
 
-    public function dataForTestInsertionSorterSort()
+    public function dataForTestInsertionSorterSort(): array
     {
         return [
             [[], '__SortersTest__eq'],
@@ -31,11 +37,11 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @param callable $sortFn
      * @dataProvider dataForTestQuickSorterSort
      */
-    public function testQuickSorterSort(array $original, callable $sortFn)
+    public function testQuickSorterSort(array $original, callable $sortFn): void
     {
         $expected = $original;
         $this->assertTrue(usort($expected, $sortFn));
@@ -44,7 +50,7 @@ class SortersTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $sorter->sort($original));
     }
 
-    public function dataForTestQuickSorterSort()
+    public function dataForTestQuickSorterSort(): array
     {
         return [
             [[], '__SortersTest__eq'],
@@ -55,11 +61,11 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @param callable $sortFn
      * @dataProvider dataForTestQuickSorterMSortUsingLomutoPartition
      */
-    public function testQuickSorterMSortUsingLomutoPartition(array $original, callable $sortFn)
+    public function testQuickSorterMSortUsingLomutoPartition(array $original, callable $sortFn): void
     {
         $expected = $original;
         $this->assertTrue(usort($expected, $sortFn));
@@ -69,7 +75,7 @@ class SortersTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $original);
     }
 
-    public function dataForTestQuickSorterMSortUsingLomutoPartition()
+    public function dataForTestQuickSorterMSortUsingLomutoPartition(): array
     {
         return [
             [[], '__SortersTest__eq'],
@@ -80,11 +86,11 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @param callable $sortFn
      * @dataProvider dataForTestQuickSorterMSortUsingHoarePartition
      */
-    public function testQuickSorterMSortUsingHoarePartition(array $original, callable $sortFn)
+    public function testQuickSorterMSortUsingHoarePartition(array $original, callable $sortFn): void
     {
         $expected = $original;
         $this->assertTrue(usort($expected, $sortFn));
@@ -94,7 +100,7 @@ class SortersTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $original);
     }
 
-    public function dataForTestQuickSorterMSortUsingHoarePartition()
+    public function dataForTestQuickSorterMSortUsingHoarePartition(): array
     {
         return [
             [[], '__SortersTest__eq'],
@@ -105,22 +111,22 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $expected
-     * @param mixed[] $original
-     * @param int $expectedPivot Позиция опорного элемента после упорядочивания массива
-     * @param int $lo Нижний индекс
-     * @param int $hi Верхний индекс
+     * @param mixed[]  $expected
+     * @param mixed[]  $original
+     * @param int      $expectedPivot Позиция опорного элемента после упорядочивания массива
+     * @param int      $lo            Нижний индекс
+     * @param int      $hi            Верхний индекс
      * @param callable $sortFn
      * @dataProvider dataForTestQuickSorterLomutoPartition
      */
-    public function testQuickSorterLomutoPartition(array $expected, int $expectedPivot, array $original, int $lo, int $hi, callable $sortFn)
+    public function testQuickSorterLomutoPartition(array $expected, int $expectedPivot, array $original, int $lo, int $hi, callable $sortFn): void
     {
         $sorter = new QuickSorter($sortFn);
         $this->assertEquals($expectedPivot, $sorter->lomutoPartition($original, $lo, $hi));
         $this->assertEquals($expected, $original);
     }
 
-    public function dataForTestQuickSorterLomutoPartition()
+    public function dataForTestQuickSorterLomutoPartition(): array
     {
         return [
             [[], 0, [], 0, 0, '__SortersTest__eq'],
@@ -132,22 +138,22 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $expected
-     * @param mixed[] $original
-     * @param int $expectedPivot Позиция опорного элемента после упорядочивания массива
-     * @param int $lo Нижний индекс
-     * @param int $hi Верхний индекс
+     * @param mixed[]  $expected
+     * @param mixed[]  $original
+     * @param int      $expectedPivot Позиция опорного элемента после упорядочивания массива
+     * @param int      $lo            Нижний индекс
+     * @param int      $hi            Верхний индекс
      * @param callable $sortFn
      * @dataProvider dataForTestQuickSorterHoarePartition
      */
-    public function testQuickSorterHoarePartition(array $expected, int $expectedPivot, array $original, int $lo, int $hi, callable $sortFn)
+    public function testQuickSorterHoarePartition(array $expected, int $expectedPivot, array $original, int $lo, int $hi, callable $sortFn): void
     {
         $sorter = new QuickSorter($sortFn);
         $this->assertEquals($expectedPivot, $sorter->hoarePartition($original, $lo, $hi));
         $this->assertEquals($expected, $original);
     }
 
-    public function dataForTestQuickSorterHoarePartition()
+    public function dataForTestQuickSorterHoarePartition(): array
     {
         return [
             [[], 0, [], 0, 0, '__SortersTest__eq'],
@@ -160,11 +166,11 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $original
+     * @param mixed[]  $original
      * @param callable $sortFn
      * @dataProvider dataForTestMergeSorterSort
      */
-    public function testMergeSorterSort(array $original, callable $sortFn)
+    public function testMergeSorterSort(array $original, callable $sortFn): void
     {
         $expected = $original;
         $this->assertTrue(usort($expected, $sortFn));
@@ -173,7 +179,7 @@ class SortersTest extends \Codeception\Test\Unit
         $this->assertEquals($expected, $sorter->sort($original));
     }
 
-    public function dataForTestMergeSorterSort()
+    public function dataForTestMergeSorterSort(): array
     {
         return [
             [[], '__SortersTest__eq'],
@@ -184,19 +190,19 @@ class SortersTest extends \Codeception\Test\Unit
     }
 
     /**
-     * @param mixed[] $expected
-     * @param mixed[] $first
-     * @param mixed[] $second
+     * @param mixed[]  $expected
+     * @param mixed[]  $first
+     * @param mixed[]  $second
      * @param callable $sortFn
      * @dataProvider dataForTestMergeSorterMerge
      */
-    public function testMergeSorterMerge(array $expected, array $first, array $second, callable $sortFn)
+    public function testMergeSorterMerge(array $expected, array $first, array $second, callable $sortFn): void
     {
         $sorter = new MergeSorter($sortFn);
         $this->assertEquals($expected, $sorter->merge($first, $second));
     }
 
-    public function dataForTestMergeSorterMerge()
+    public function dataForTestMergeSorterMerge(): array
     {
         return [
             [[], [], [], '__SortersTest__eq'],

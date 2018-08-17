@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\GreatestCommonDivisor;
 
 /**
@@ -23,13 +25,15 @@ class EuclideanAlgorithm implements IGcdCalc
      *
      * @param int $a
      * @param int $b
+     *
      * @return int
      */
     public function calc(int $a, int $b): int
     {
-        if ($b === 0) {
+        if (0 === $b) {
             return $a;
         }
+
         return $this->calc($b, $a % $b);
     }
 }

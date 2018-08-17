@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\Matrix;
 
 use OutOfBoundsException;
-
 use Sth348962\Algorithms\Utils\IMatrix;
 
 class Submatrix implements IMatrix
@@ -20,10 +21,10 @@ class Submatrix implements IMatrix
 
     /**
      * @param \Sth348962\Algorithms\Utils\IMatrix $origin
-     * @param int $rowIndex Первая строка
-     * @param int $rows Число строк
-     * @param int $colIndex Первый столбец
-     * @param int $columns Число столбцов
+     * @param int                                 $rowIndex Первая строка
+     * @param int                                 $rows     Число строк
+     * @param int                                 $colIndex Первый столбец
+     * @param int                                 $columns  Число столбцов
      */
     public function __construct(IMatrix $origin, int $rowIndex, int $rows, int $colIndex, int $columns)
     {
@@ -35,7 +36,7 @@ class Submatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rows(): int
     {
@@ -43,7 +44,7 @@ class Submatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function columns(): int
     {
@@ -51,7 +52,7 @@ class Submatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(int $row, int $col)
     {
@@ -66,7 +67,7 @@ class Submatrix implements IMatrix
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set(int $row, int $col, $value): IMatrix
     {
@@ -78,6 +79,7 @@ class Submatrix implements IMatrix
         }
 
         $this->origin->set($row, $col, $value);
+
         return $this;
     }
 }

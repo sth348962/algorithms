@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sth348962\Algorithms\MaximumSubarrayProblem;
 
 use RuntimeException;
@@ -11,8 +13,9 @@ class DivideAndConquer
      * ограниченных индексами $from и $to (включительно).
      *
      * @param int[] $original
-     * @param int $from
-     * @param int $to
+     * @param int   $from
+     * @param int   $to
+     *
      * @return \Sth348962\Algorithms\MaximumSubarrayProblem\Result
      */
     public function find(array $original, int $from, int $to): Result
@@ -21,7 +24,7 @@ class DivideAndConquer
         if ($length <= 0) {
             throw new RuntimeException('Unreachable code');
         }
-        if ($length === 1) {
+        if (1 === $length) {
             // Базовый случай
             return new Result($original[$from], [new Subarray($from, $length)]);
         }
@@ -29,10 +32,10 @@ class DivideAndConquer
         // Рекурсивный случай
 
         // Индекс середины массива
-        $mid = $from + ceil($length / 2) - 1;
+        $mid = $from + (int) (ceil($length / 2)) - 1;
 
         $left = $this->find($original, $from, $mid);
-        $right = $this->find($original, $mid+1, $to);
+        $right = $this->find($original, $mid + 1, $to);
         $middle = $this->findCrossingMid($original, $from, $mid, $to);
 
         // Объединяем результаты
@@ -59,9 +62,10 @@ class DivideAndConquer
      * ограниченного индексами $from и $to (включительно).
      *
      * @param int[] $original
-     * @param int $from
-     * @param int $mid
-     * @param int $to
+     * @param int   $from
+     * @param int   $mid
+     * @param int   $to
+     *
      * @return \Sth348962\Algorithms\MaximumSubarrayProblem\Result
      */
     public function findCrossingMid(array $original, int $from, int $mid, int $to): Result
