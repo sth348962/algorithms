@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sth348962\Algorithms\Matrix;
 
+use InvalidArgumentException;
 use Sth348962\Algorithms\Utils\IMatrix;
 use Sth348962\Algorithms\Utils\Matrix;
 

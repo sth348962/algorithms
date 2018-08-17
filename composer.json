@@ -19,9 +19,11 @@
   },
   "require-dev": {
     "codeception/codeception": "^2.4",
-    "friendsofphp/php-cs-fixer": "^2.12"
+    "friendsofphp/php-cs-fixer": "^2.12",
+    "phpstan/phpstan": "^0.10.3"
   },
   "scripts": {
+    "lint": "phpstan analyse -l 5 src tests",
     "fix-code-style": "php-cs-fixer fix",
     "test-unit-run": "codecept run unit",
     "test-unit-generate": "codecept generate:test unit"

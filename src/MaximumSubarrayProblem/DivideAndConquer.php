@@ -106,6 +106,11 @@ class DivideAndConquer
             }
         }
 
+        if (!isset($leftIndexes, $rightIndexes)) {
+            // Убираем предупреждение "Variable ... might not be defined."
+            throw new RuntimeException('Unreachable code');
+        }
+
         $subarrays = [];
         foreach ($leftIndexes as $leftIndex) {
             foreach ($rightIndexes as $rightIndex) {

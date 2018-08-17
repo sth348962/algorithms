@@ -217,6 +217,11 @@ class Space2D
         // Сортируем массив по координате y
         $pointsSortedByY = call_user_func($this->sortByY, $points);
 
+        if (!isset($closestPairs)) {
+            // Убираем предупреждение "Variable ... might not be defined."
+            throw new RuntimeException('Unreachable code');
+        }
+
         return new StepResult($minDistance, $closestPairs, $pointsSortedByY);
     }
 }

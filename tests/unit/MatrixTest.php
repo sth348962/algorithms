@@ -15,6 +15,11 @@ use Sth348962\Algorithms\Utils\Matrix;
  */
 final class MatrixTest extends \Codeception\Test\Unit
 {
+    /**
+     * @var \UnitTester
+     */
+    protected $tester;
+
     public function testBasic(): void
     {
         $m = Matrix::createWithArray([

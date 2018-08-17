@@ -18,7 +18,7 @@ class Strings
      *
      * @return \Traversable
      */
-    public function generatorUtf8(string $string): Traversable
+    public static function generatorUtf8(string $string): Traversable
     {
         return (function () use ($string) {
             $len = strlen($string);
