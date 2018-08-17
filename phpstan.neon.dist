@@ -1,0 +1,8 @@
+parameters:
+ autoload_directories:
+  - %rootDir%/../../../tests/unit
+  - %rootDir%/../../../tests/_support
+ excludes_analyse:
+  - %rootDir%/../../../tests/_data
+  - %rootDir%/../../../tests/_output
+  - %rootDir%/../../../tests/_support
