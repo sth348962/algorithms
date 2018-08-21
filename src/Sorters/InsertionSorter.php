@@ -36,7 +36,7 @@ class InsertionSorter extends Sorter
                 $original[$j + 1] = $original[$j];
                 $j--;
             }
-            if ($j + 1 !== $i) {
+            if ($i !== $j + 1) {
                 // Если позиция текущего элемента изменилась
                 $original[$j + 1] = $current;
             }

@@ -8,7 +8,6 @@ use Sth348962\Algorithms\Sorters\QuickSorter;
 
 /**
  * @internal
- * @coversNothing
  */
 final class SortersTest extends \Codeception\Test\Unit
 {

@@ -6,7 +6,6 @@ use Sth348962\Algorithms\Permutations\NarayanaAlgorithm;
 
 /**
  * @internal
- * @coversNothing
  */
 final class PermutationsTest extends \Codeception\Test\Unit
 {
@@ -25,7 +24,7 @@ final class PermutationsTest extends \Codeception\Test\Unit
         do {
             $current = $permutations->next($current);
             $actual[] = $current;
-        } while (null !== $current);
+        } while ($current !== null);
         $this->assertEquals($expected, $actual);
     }
 

@@ -11,7 +11,6 @@ use Sth348962\Algorithms\Utils\Matrix;
 
 /**
  * @internal
- * @coversNothing
  */
 final class MatrixTest extends \Codeception\Test\Unit
 {

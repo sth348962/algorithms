@@ -100,9 +100,9 @@ class Space2D
 
         // Получаем минимальное расстояние и массив ближайших точек
         $minDistance = min($leftStep->getDistance(), $rightStep->getDistance());
-        if ($leftStep->getDistance() === $minDistance) {
+        if ($minDistance === $leftStep->getDistance()) {
             $closestPairs = $leftStep->getClosestPoints();
-            if ($rightStep->getDistance() === $minDistance) {
+            if ($minDistance === $rightStep->getDistance()) {
                 $closestPairs = array_merge($closestPairs, $rightStep->getClosestPoints());
             }
         } else {
@@ -131,10 +131,10 @@ class Space2D
                 // Точки находятся в левой или в правой половине
                 $pointAPosition = call_user_func($this->compareByX, $pointA, $midPoint);
                 $pointBPosition = call_user_func($this->compareByX, $pointB, $midPoint);
-                if ($pointAPosition === $pointBPosition || 0 === $pointAPosition || 0 === $pointBPosition) {
+                if ($pointAPosition === $pointBPosition || $pointAPosition === 0 || $pointBPosition === 0) {
                     // Точки с координатой x, равной точке $midPoint, могут находиться как в правой,
                     // так и в левой половине
-                    if (0 === $pointAPosition) {
+                    if ($pointAPosition === 0) {
                         if ($pointA === $midPoint) {
                             // Центральная точка принадлежит левой половине
                             $pointAPosition = -1;
@@ -143,7 +143,7 @@ class Space2D
                         }
                     }
 
-                    if (0 === $pointBPosition) {
+                    if ($pointBPosition === 0) {
                         if ($pointB === $midPoint) {
                             // Центральная точка принадлежит левой половине
                             $pointBPosition = -1;

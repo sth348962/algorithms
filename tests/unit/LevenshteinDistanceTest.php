@@ -9,7 +9,6 @@ use Tree\Visitor\PreOrderVisitor;
 
 /**
  * @internal
- * @coversNothing
  */
 final class LevenshteinDistanceTest extends \Codeception\Test\Unit
 {

@@ -27,7 +27,7 @@ class Matrix implements IMatrix
     public static function createWithArray(array $origin): IMatrix
     {
         $rows = count($origin);
-        $columns = (0 === $rows) ? 0 : count($origin[0]);
+        $columns = ($rows === 0) ? 0 : count($origin[0]);
 
         return new static($origin, $rows, $columns);
     }

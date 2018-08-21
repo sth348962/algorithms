@@ -25,6 +25,7 @@
   "scripts": {
     "lint": "phpstan analyse -l 5 src tests",
     "fix-code-style": "php-cs-fixer fix",
+    "test-coverage": "codecept run --coverage --coverage-html",
     "test-unit-run": "codecept run unit",
     "test-unit-generate": "codecept generate:test unit"
   }

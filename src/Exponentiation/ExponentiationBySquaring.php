@@ -26,8 +26,8 @@ class ExponentiationBySquaring
         }
 
         $result = 1;
-        while (0 !== $n) {
-            if (1 === $n % 2) {
+        while ($n !== 0) {
+            if ($n % 2 === 1) {
                 $result = $result * $x;
             }
             $n = $n >> 1;

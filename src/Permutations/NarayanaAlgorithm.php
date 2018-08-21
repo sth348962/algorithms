@@ -40,7 +40,7 @@ class NarayanaAlgorithm
         $i = $length - 1;
         while ($i-- > 0) {
             $tmp = call_user_func($this->sortFn, $original[$i], $original[$i + 1]);
-            if (0 === $tmp) {
+            if ($tmp === 0) {
                 // Если наткнулись на одинаковые элементы
                 throw new InvalidArgumentException('have come across equal elements');
             }
@@ -56,7 +56,7 @@ class NarayanaAlgorithm
             $j = $length;
             while ($j-- && $j > $l) {
                 $tmp = call_user_func($this->sortFn, $original[$k], $original[$j]);
-                if (0 === $tmp) {
+                if ($tmp === 0) {
                     // Если наткнулись на одинаковые элементы
                     throw new InvalidArgumentException('have come across equal elements');
                 }
@@ -69,7 +69,7 @@ class NarayanaAlgorithm
             break;
         }
 
-        if (-1 === $k) {
+        if ($k === -1) {
             // Если это последняя перестановка
             return null;
         }

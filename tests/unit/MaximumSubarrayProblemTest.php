@@ -9,7 +9,6 @@ use Sth348962\Algorithms\MaximumSubarrayProblem\Subarray;
 
 /**
  * @internal
- * @coversNothing
  */
 final class MaximumSubarrayProblemTest extends \Codeception\Test\Unit
 {

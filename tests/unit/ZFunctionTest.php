@@ -6,7 +6,6 @@ use Sth348962\Algorithms\ZFunction\ZFunction;
 
 /**
  * @internal
- * @coversNothing
  */
 final class ZFunctionTest extends \Codeception\Test\Unit
 {

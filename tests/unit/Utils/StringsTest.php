@@ -9,7 +9,6 @@ use Traversable;
 
 /**
  * @internal
- * @coversNothing
  */
 final class StringsTest extends \Codeception\Test\Unit
 {

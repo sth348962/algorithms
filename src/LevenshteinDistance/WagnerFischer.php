@@ -18,17 +18,17 @@ class WagnerFischer
         $n = strlen($to);
 
         // Крайний случай - если одна из строк (или обе) равна нулю
-        if (0 === $n + $m) {
+        if ($n + $m === 0) {
             return [];
         }
 
-        if (0 === $n) {
+        if ($n === 0) {
             return array_map(function (int $value) {
                 return [$value];
             }, range(0, $m, 1));
         }
 
-        if (0 === $m) {
+        if ($m === 0) {
             return [range(0, $n, 1)];
         }
 
@@ -56,7 +56,7 @@ class WagnerFischer
 
         for ($i = 0; $i <= $m; $i++) {
             for ($j = 0; $j <= $n; $j++) {
-                if (0 === $i || 0 === $j) {
+                if ($i === 0 || $j === 0) {
                     // Расчет сравнения с пустой строкой
                     $matrix[$i][$j] = $i + $j;
 

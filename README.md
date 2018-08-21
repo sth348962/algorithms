@@ -24,6 +24,24 @@ composer test-unit-run
 composer test-unit-generate
 ```
 
+## Получение покрытия кода тестами
+
+```
+composer test-coverage
+```
+
+## Запуск линтера
+
+```
+composer lint
+```
+
+## Форматирование кода
+
+```
+composer fix-code-style
+```
+
 # Содержание
 
 ## Алгоритмы и структуры данных

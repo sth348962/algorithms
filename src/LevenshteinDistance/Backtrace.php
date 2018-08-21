@@ -25,12 +25,12 @@ class Backtrace
         $root = new Node(Step::root());
 
         // Крайний случай - если одна из строк (или обе) нулевой длины
-        if (0 === $n + $m) {
+        if ($n + $m === 0) {
             return $root;
         }
 
         // Если нужно получить пустую строку
-        if (0 === $n) {
+        if ($n === 0) {
             $parent = $root;
             $i = $m;
             while ($i > 0) {
@@ -43,7 +43,7 @@ class Backtrace
         }
 
         // Если дана пустая строка
-        if (0 === $m) {
+        if ($m === 0) {
             $parent = $root;
             $j = $n;
             while ($j > 0) {
@@ -73,13 +73,13 @@ class Backtrace
 
             // Находим минимальное значение
             $values = [];
-            if (null !== $upperLeftValue) {
+            if ($upperLeftValue !== null) {
                 $values[] = $upperLeftValue;
             }
-            if (null !== $upperValue) {
+            if ($upperValue !== null) {
                 $values[] = $upperValue;
             }
-            if (null !== $leftValue) {
+            if ($leftValue !== null) {
                 $values[] = $leftValue;
             }
             if (empty($values)) {
@@ -88,7 +88,7 @@ class Backtrace
             }
             $min = min($values);
 
-            if (null !== $upperLeftValue && $min === $upperLeftValue) {
+            if ($upperLeftValue !== null && $min === $upperLeftValue) {
                 // Если идем по диагонали
                 if ($upperLeftValue === $currentValue) {
                     // Если правок не было
@@ -104,7 +104,7 @@ class Backtrace
                 $stack[] = ['parent' => $node, 'i' => $i - 1, 'j' => $j - 1];
             }
 
-            if (null !== $upperValue && $min === $upperValue) {
+            if ($upperValue !== null && $min === $upperValue) {
                 // Если было удаление символа
                 $node = new Node(Step::delete($from[$i], $j + 1, $i + 1));
                 $parent->addChild($node);
@@ -113,7 +113,7 @@ class Backtrace
                 $stack[] = ['parent' => $node, 'i' => $i - 1, 'j' => $j];
             }
 
-            if (null !== $leftValue && $min === $leftValue) {
+            if ($leftValue !== null && $min === $leftValue) {
                 // Если было добавление символа
                 $node = new Node(Step::insert($to[$j], $j + 1, $i + 1));
                 $parent->addChild($node);

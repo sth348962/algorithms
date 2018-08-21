@@ -7,7 +7,6 @@ use Sth348962\Algorithms\KnuthMorrisPratt\PrefixFunction;
 
 /**
  * @internal
- * @coversNothing
  */
 final class KnuthMorrisPrattTest extends \Codeception\Test\Unit
 {

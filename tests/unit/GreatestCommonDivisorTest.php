@@ -7,7 +7,6 @@ use Sth348962\Algorithms\GreatestCommonDivisor\EuclideanAlgorithm;
 
 /**
  * @internal
- * @coversNothing
  */
 final class GreatestCommonDivisorTest extends \Codeception\Test\Unit
 {

@@ -24,7 +24,7 @@ class DivideAndConquer
         if ($length <= 0) {
             throw new RuntimeException('Unreachable code');
         }
-        if (1 === $length) {
+        if ($length === 1) {
             // Базовый случай
             return new Result($original[$from], [new Subarray($from, $length)]);
         }

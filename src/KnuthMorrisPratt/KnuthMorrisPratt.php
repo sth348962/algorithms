@@ -20,7 +20,7 @@ class KnuthMorrisPratt
 
         $positions = [];
 
-        if (0 === $n || 0 === $m) {
+        if ($n === 0 || $m === 0) {
             // Если одна из строк нулевой длины - искать нечего
             return $positions;
         }

@@ -11,16 +11,16 @@ class BinaryAlgorithm implements IGcdCalc
      */
     public function calc(int $a, int $b): int
     {
-        if (0 === $a) {
+        if ($a === 0) {
             return $b;
         }
 
-        if (0 === $b) {
+        if ($b === 0) {
             return $a;
         }
 
-        $aIsEven = (0 === $a % 2);
-        $bIsEven = (0 === $b % 2);
+        $aIsEven = ($a % 2 === 0);
+        $bIsEven = ($b % 2 === 0);
 
         if ($aIsEven && $bIsEven) {
             return 2 * $this->calc($a / 2, $b / 2);

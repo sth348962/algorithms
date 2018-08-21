@@ -40,11 +40,11 @@ class MergeSorter extends Sorter
         $rightLength = count($right);
 
         // Если один из массивов пустой
-        if (0 === $leftLength) {
+        if ($leftLength === 0) {
             return $right;
         }
 
-        if (0 === $rightLength) {
+        if ($rightLength === 0) {
             return $left;
         }
 

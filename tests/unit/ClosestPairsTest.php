@@ -8,7 +8,6 @@ use Sth348962\Algorithms\Utils\Point2D;
 
 /**
  * @internal
- * @coversNothing
  */
 final class ClosestPairsTest extends \Codeception\Test\Unit
 {

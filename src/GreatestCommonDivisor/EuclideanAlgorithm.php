@@ -30,7 +30,7 @@ class EuclideanAlgorithm implements IGcdCalc
      */
     public function calc(int $a, int $b): int
     {
-        if (0 === $b) {
+        if ($b === 0) {
             return $a;
         }
 

@@ -6,7 +6,6 @@ use Sth348962\Algorithms\Exponentiation\ExponentiationBySquaring;
 
 /**
  * @internal
- * @coversNothing
  */
 final class ExponentiationTest extends \Codeception\Test\Unit
 {
