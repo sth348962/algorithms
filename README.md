@@ -1,10 +1,10 @@
-# Описание
+# Набор различных алгоритмов и структур данных на PHP.
 
-Набор различных алгоритмов и структур данных на PHP.
+[![Build Status](https://travis-ci.com/sth348962/algorithms.svg?branch=master)](https://travis-ci.com/sth348962/algorithms)
 
-# Установка и запуск
+## Установка и запуск
 
-## Установка
+### Установка
 
 ```
 git clone https://github.com/sth348962/algorithms
@@ -12,39 +12,39 @@ cd algorithms
 composer install
 ```
 
-## Тестирование
+### Тестирование
 
 ```
 composer test-unit-run
 ```
 
-## Создание нового теста
+### Создание нового теста
 
 ```
 composer test-unit-generate
 ```
 
-## Получение покрытия кода тестами
+### Получение покрытия кода тестами
 
 ```
 composer test-coverage
 ```
 
-## Запуск линтера
+### Запуск линтера
 
 ```
 composer lint
 ```
 
-## Форматирование кода
+### Форматирование кода
 
 ```
 composer fix-code-style
 ```
 
-# Содержание
+## Содержание
 
-## Алгоритмы и структуры данных
+### Алгоритмы и структуры данных
 
 1. [Алгоритм Кнута — Морриса — Пратта](https://ru.wikipedia.org/wiki/Алгоритм_Кнута_—_Морриса_—_Пратта)
 
@@ -94,7 +94,7 @@ composer fix-code-style
 
     [Алгоритм Нарайаны](https://ru.wikipedia.org/wiki/Алгоритм_Нарайаны)
 
-## Разное
+### Разное
 
 1. [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
 
