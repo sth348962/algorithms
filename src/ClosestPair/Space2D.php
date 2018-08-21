@@ -198,7 +198,8 @@ class Space2D
             throw new RuntimeException('Unreachable code');
         }
 
-        $minDistance = PHP_FLOAT_MAX;
+        // Константа PHP_FLOAT_MAX доступна с PHP 7.2, поэтому для поддержки PHP 7.1 используем INF
+        $minDistance = INF;
         for ($i = 0; $i < $length; $i++) {
             for ($j = $i + 1; $j < $length; $j++) {
                 $tmp = call_user_func($this->measure, $points[$i], $points[$j]);
@@ -206,7 +207,7 @@ class Space2D
                     continue;
                 }
                 if ($minDistance > $tmp) {
-                    // Будет вызван минимум один раз, т.к. $minDistance = PHP_FLOAT_MAX
+                    // Будет вызван минимум один раз, т.к. $minDistance = INF
                     $closestPairs = [];
                 }
                 $minDistance = $tmp;
